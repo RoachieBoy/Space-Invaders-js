@@ -10,6 +10,8 @@ class CollisionHelper{
      * @returns {boolean} true if the two rectangles are colliding, false otherwise
      */
     static checkRectangleCollision(rect1, rect2) {
+        // when the distance between the two rectangles is less than the sum of their widths and heights
+        // they are colliding
         if(Math.abs(rect1.x - rect2.x) < rect1.width + rect2.width) {
             if(Math.abs(rect1.y - rect2.y) < rect1.height + rect2.height){
                 return true
