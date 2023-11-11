@@ -1,41 +1,40 @@
 class Player extends GameObject{
-    constructor(){
-        super();
-        this.x = 50;
-        this.y = 50;
-        this.width = 50;
-        this.height = 50;
-        this.color = color(255, 0, 0);
-        this.speed = 5;
+    constructor(x, y, width, height, color){
+        super(x, y, width, height, color);
+        this.speed = 15;
     }
 
-    /**
-     * Draws the object to the canvas
-     */
+
     display(){
         fill(this.color);
         rect(this.x, this.y, this.width, this.height);
     }
 
-    /**
-     * Updates the object
-     */
+   
     update(){
         this.movement();
+        this.screenCollision();
+    }
+    
+    /**
+     *  Checks if the player is colliding with the screen
+     * @returns {boolean} - Returns true if the player is colliding with the screen
+     */
+    screenCollision(){
+        const isCollidingWithScreen = CollisionHelper.checkCanvasCollision(this, screen);
+
+        if(!isCollidingWithScreen) return;
+
+        if(this.x < 0) this.x = 0;
+        if(this.x + this.width > screen.width) this.x = screen.width - this.width;
+        
     }
 
+    /**
+     * Handles the movement of the player based on the key pressed
+     */
     movement(){
-        if(keyIsDown(LEFT_ARROW)){
-            this.x -= this.speed;
-        }
-        if(keyIsDown(RIGHT_ARROW)){
-            this.x += this.speed;
-        }
-        if(keyIsDown(UP_ARROW)){
-            this.y -= this.speed;
-        }
-        if(keyIsDown(DOWN_ARROW)){
-            this.y += this.speed;
-        }
+        if(keyIsDown(LEFT_ARROW)) this.x -= this.speed;
+        if(keyIsDown(RIGHT_ARROW)) this.x += this.speed;
     }
 }

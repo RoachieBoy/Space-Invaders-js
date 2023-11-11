@@ -4,20 +4,16 @@
 class CollisionHelper{
     
     /**
-     * Checks if two rectangles are colliding
-     * @param {*} rect1 the first rectangle to check collision against
-     * @param {*} rect2 the second rectangle to check collision against
-     * @returns {boolean} true if the two rectangles are colliding, false otherwise
-     */
-    static checkRectangleCollision(rect1, rect2) {
-        // when the distance between the two rectangles is less than the sum of their widths and heights
-        // they are colliding
-        if(Math.abs(rect1.x - rect2.x) < rect1.width + rect2.width) {
-            if(Math.abs(rect1.y - rect2.y) < rect1.height + rect2.height){
-                return true
-            }
+     * Checks if the gameObject is colliding with the canvas
+     * @param {GameObject} gameObject - The gameObject to check
+     * @param {Object} canvas - The canvas object
+     * @returns {boolean} - Returns true if the gameObject is colliding with the canvas
+    */
+    static checkCanvasCollision(gameObject, canvas){
+        // checks the collision with the right and left side of the canvas
+        const rightCollision = gameObject.x + gameObject.width > canvas.width;
+        const leftCollision = gameObject.x < 0;
 
-            return false;
-        }
+        if(rightCollision || leftCollision) return true;
     }
 }
