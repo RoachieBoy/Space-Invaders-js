@@ -1,0 +1,20 @@
+# Ignore node_modules folder
+node_modules/
+
+# Ignore all text files
+*.txt
+
+# Ignore Mac system files
+.DS_Store
+
+# Ignore p5.js libraries
+p5*.js
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore all log files
+*.log
+
+# Ignore package-lock.json to avoid conflicts
+package-lock.json
