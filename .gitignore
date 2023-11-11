@@ -4,8 +4,6 @@ node_modules/
 # Ignore all text files
 *.txt
 
-# Ignore Mac system files
-.DS_Store
 
 # Ignore p5.js libraries
 p5*.js
@@ -18,3 +16,9 @@ p5*.js
 
 # Ignore package-lock.json to avoid conflicts
 package-lock.json
+
+# idea files
+.idea/
+
+# Ignore libraries folder
+libraries/
