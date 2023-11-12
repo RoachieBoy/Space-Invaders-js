@@ -36,9 +36,6 @@ class Player extends GameObject {
     if (this.x + this.width > screen.width) this.x = screen.width - this.width;
   }
 
-  /**
-   * Handles the movement of the player based on the key pressed
-   */
   movement() {
     if (InputHelper.keys["ArrowLeft"] || InputHelper.keys["ArrowRight"]) {
       if (InputHelper.lastKeyPressed === "ArrowLeft") {

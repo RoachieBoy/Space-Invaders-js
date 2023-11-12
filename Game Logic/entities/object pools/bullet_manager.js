@@ -53,6 +53,7 @@ class BulletManager {
         this.bulletsInUse.splice(i, 1);
         bullet.inUse = false;
       } else {
+        // only update bullets that are in use
         bullet.update();
       }
     }

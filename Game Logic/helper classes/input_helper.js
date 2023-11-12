@@ -12,8 +12,12 @@ class InputHelper {
    * @returns {boolean} - Returns true if the key is pressed
    */
   static keysPressed(e) {
-    InputHelper.keys[e.key] = true;
-    InputHelper.lastKeyPressed = e.key;
+    if (e instanceof KeyboardEvent) {
+      InputHelper.keys[e.key] = true;
+      InputHelper.lastKeyPressed = e.key;
+    } else {
+      console.error("Invalid event type received in keysPressed:", e);
+    }
   }
 
   /**
@@ -22,7 +26,11 @@ class InputHelper {
    * @returns {boolean} - Returns true if the key is released
    */
   static keysReleased(e) {
-    InputHelper.keys[e.key] = false;
+    if (e instanceof KeyboardEvent) {
+      InputHelper.keys[e.key] = false;
+    } else {
+      console.error("Invalid event type received in keysReleased:", e);
+    }
   }
 
   /**
