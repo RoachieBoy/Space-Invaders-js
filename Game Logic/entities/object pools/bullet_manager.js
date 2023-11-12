@@ -4,6 +4,7 @@
 class BulletManager {
   constructor(bulletPoolSize) {
     this.bulletPoolSize = bulletPoolSize;
+    this.bulletsInUse = [];
 
     this.bullets = Array.from(
       { length: this.bulletPoolSize },
@@ -29,22 +30,31 @@ class BulletManager {
 
     if (!bullet) return;
 
+    // Set the bullet position to the entity position 
     bullet.x = entity.x + entity.width / 2 - bullet_width / 2;
     bullet.y = entity.y;
+
     bullet.inUse = true;
+
+    this.bulletsInUse.push(bullet);
   }
 
   /**
    * Updates the in use bullets in the pool
    */
   updateBullets() {
-    this.bullets
-      .filter((bullet) => bullet.inUse)
-      .forEach((bullet) => {
-        bullet.y -= bullet_speed;
-        if (bullet.y < -bullet.height) {
-          bullet.inUse = false;
-        }
-      });
+    // iterate through bullets in use backwards for removal
+    // more efficient than iterating through forwards
+    for (let i = this.bulletsInUse.length - 1; i >= 0; i--) {
+      const bullet = this.bulletsInUse[i];
+
+      // if bullet is out of bounds, remove it from the in use array
+      if (bullet.y < -bullet.height) {
+        this.bulletsInUse.splice(i, 1);
+        bullet.inUse = false;
+      } else {
+        bullet.update();
+      }
+    }
   }
 }

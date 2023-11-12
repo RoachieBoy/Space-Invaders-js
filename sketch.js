@@ -14,7 +14,7 @@ function setup() {
     player_height,
     player_color,
     bulletManager
-  );
+  ); 
 
   screen = {
     x: 0,
