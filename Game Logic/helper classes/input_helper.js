@@ -1,7 +1,6 @@
-/*
-    Used for any methods that are used to help with key input
-
-    Inspiration: https://medium.com/@joshbwasserman/managing-simultaneous-keypressed-events-in-javascript-78da1b3b14de 
+/**
+ * Used for any methods that are used to help with key input
+   Inspiration: https://medium.com/@joshbwasserman/managing-simultaneous-keypressed-events-in-javascript-78da1b3b14de 
 */
 class InputHelper{
 

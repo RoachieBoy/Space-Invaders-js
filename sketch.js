@@ -5,6 +5,7 @@ function setup() {
   createCanvas(canvas_size.width, canvas_size.height);
  
   player = new Player(width / 2 - player_width / 2, height - player_height, player_width, player_height, player_color);
+
   
   screen = {
     x: 0,
@@ -19,6 +20,13 @@ function draw() {
 
   InputHelper.eventSubscriptions();
 
+  
+  player.bullets.forEach(bullet => {
+    bullet.display();
+    bullet.update();
+  });
+
   player.display();
   player.update();
+
 }
