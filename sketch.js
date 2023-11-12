@@ -4,9 +4,8 @@ let screen;
 function setup() {
   createCanvas(canvas_size.width, canvas_size.height);
  
-  player = new Player(canvas_size.width/2, canvas_size.height - 20, 100, 20, "red");
- 
-
+  player = new Player(width / 2 - player_width / 2, height - player_height, player_width, player_height, player_color);
+  
   screen = {
     x: 0,
     y: 0,
@@ -17,6 +16,8 @@ function setup() {
 
 function draw() {
   background(bg_color);
+
+  InputHelper.eventSubscriptions();
 
   player.display();
   player.update();
