@@ -5,6 +5,7 @@ class Enemy extends GameObject {
     this.direction = 1;
     this.alive = true;
     this.points = points;
+    this.hit = false;
   }
 
   display () {
@@ -24,4 +25,15 @@ class Enemy extends GameObject {
     this.y += this.height;
     this.direction *= -1;
   }
+
+  /**
+     *  Updates the enemy's position
+     */
+    kill(){
+
+      if (!this.hit) return;
+
+      this.x = remove_enemy_position.x;
+      this.y = remove_enemy_position.y;
+    }
 }

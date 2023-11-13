@@ -13,4 +13,12 @@ class Bullet extends GameObject {
   movement() {
     this.y -= this.speed;
   }
+
+  /**
+   * Updates the bullet's position off the screen 
+   */
+  remove() {
+    this.x = bullet_starting_position.x;
+    this.y = bullet_starting_position.y;
+  }
 }

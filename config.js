@@ -35,3 +35,4 @@ const enemies_origin = {x: 100, y: 50};
 const enemies_x_spacing_correction = 200;
 const enemy_rows = 5;
 const enemy_columns = 11;
+const remove_enemy_position = {x: -100, y: -100};

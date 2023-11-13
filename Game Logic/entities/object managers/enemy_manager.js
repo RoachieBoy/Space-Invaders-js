@@ -3,6 +3,7 @@ class EnemyManager {
     this.enemyPoolSize = enemyPoolSize;
     this.enemiesInUse = [];
 
+    // creates an array of enemies from the pool size
     this.enemies = Array.from (
       {length: this.enemyPoolSize},
       () =>
@@ -16,6 +17,7 @@ class EnemyManager {
         )
     );
 
+    // sets all the enemies to not in use (not on the screen and not updating)
     this.enemies.forEach (enemy => (enemy.inUse = false));
   }
 
@@ -49,6 +51,8 @@ class EnemyManager {
  *  Updates the enemies in the enemies in use array 
  */
   updateEnemies () {
+    this.bulletCollisions ();
+
     // iterate through the enemies in use array and move them to the right
     this.enemiesInUse.forEach (enemy => enemy.update ());
 
@@ -63,5 +67,34 @@ class EnemyManager {
         enemy.shiftDown ();
       });
     }
+  }
+
+  /**
+ * Checks if the enemies are colliding with the player
+ */
+  bulletCollisions () {
+    let hitEnemies = [];
+
+    // iterate through the used enemies and check if they are colliding with the bullets
+    this.enemiesInUse.forEach (enemy => {
+      bulletManager.bullets.forEach (bullet => {
+        if (CollisionHelper.checkRectCollision (enemy, bullet)) {
+          enemy.hit = true;
+          hitEnemies.push (enemy);
+          bullet.remove ();
+        }
+      });
+    });
+
+    // iterate through the hit enemies and move them out of the screen and remove them from the enemies in use array
+    hitEnemies.forEach (enemy => {
+      enemy.inUse = false;
+      enemy.kill ();
+      const index = this.enemiesInUse.indexOf (enemy);
+      if (index > -1) {
+        // remove the enemy from the enemies in use array using the index
+        this.enemiesInUse.splice (index, 1);
+      }
+    });
   }
 }
