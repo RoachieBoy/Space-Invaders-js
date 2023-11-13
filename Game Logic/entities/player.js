@@ -1,7 +1,10 @@
 class Player extends GameObject {
   constructor(x, y, width, height, color, bulletManager) {
     super(x, y, width, height, color);
+
     this.speed = player_speed;
+    this.acceleration = player_acceleration;
+    this.deceleration = player_deceleration;
 
     this.bulletManager = bulletManager;
     this.lastShotCountdown = 0;
@@ -35,6 +38,7 @@ class Player extends GameObject {
     if (this.x < 0) this.x = 0;
     if (this.x + this.width > screen.width) this.x = screen.width - this.width;
   }
+
 
   movement() {
     if (InputHelper.keys["ArrowLeft"] || InputHelper.keys["ArrowRight"]) {

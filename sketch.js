@@ -1,11 +1,20 @@
 let player;
 let screen;
+
 let bulletManager;
+
+let enemyManager;
+let enemies = [];
+let point_values_enemies = [10, 20, 30];
+
 
 function setup() {
   createCanvas(canvas_size.width, canvas_size.height);
 
   bulletManager = new BulletManager(bullet_pool_size);
+  enemyManager = new EnemyManager(enemy_pool_size);
+
+  enemyManager.spawnEnemies(); 
 
   player = new Player(
     width / 2 - player_width / 2,
@@ -31,6 +40,8 @@ function draw() {
 
   bulletManager.bullets.forEach((bullet) => bullet.display());
   bulletManager.updateBullets();
+
+  enemyManager.enemies.forEach((enemy) => enemy.display());
 
   player.update();
   player.display();
