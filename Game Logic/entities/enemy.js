@@ -1,7 +1,7 @@
 class Enemy extends GameObject {
-  constructor (x, y, width, height, color, speed, points) {
+  constructor (x, y, width, height, color, points) {
     super (x, y, width, height, color);
-    this.speed = speed;
+    this.speed = enemy_speed; 
     this.direction = 1;
     this.alive = true;
     this.points = points;

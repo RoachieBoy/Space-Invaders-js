@@ -25,7 +25,7 @@ const bullet_starting_position = {x: -100, y: -100};
 const enemy_width = 25;
 const enemy_height = 25;
 const enemy_color = 'green';
-const enemy_speed = 1;
+const enemy_speed = 0.5;
 const enemy_points = 10;
 const enemy_starting_position = {x: -100, y: -100};
 

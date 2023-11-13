@@ -12,7 +12,6 @@ class EnemyManager {
           enemy_width,
           enemy_height,
           enemy_color,
-          enemy_speed,
           enemy_points
         )
     );
