@@ -22,9 +22,6 @@ class PlayingState extends GameState {
 
   enter () {
     InputHelper.eventSubscriptions ();
-
-    this.enemyManager.spawnEnemies ();
-    this.starManager.spawnStars ();
   }
 
   update () {
@@ -32,21 +29,10 @@ class PlayingState extends GameState {
 
     InputHelper.eventSubscriptions ();
 
-        // update and display the stars
-    this.starManager.stars.forEach (star => star.display ());
     this.starManager.updateStars ();
-
-    // update and display the bullets
-    this.bulletManager.bullets.forEach (bullet => bullet.display ());
     this.bulletManager.updateBullets ();
-
-
-    // update and display the enemies
-    this.enemyManager.enemies.forEach (enemy => enemy.display ());
     this.enemyManager.updateEnemies ();
 
-
-    // update and display the player
     this.player.update ();
     this.player.display ();
   }

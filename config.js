@@ -54,5 +54,8 @@ const enemy_rows = 5;
 const enemy_columns = 11;
 const remove_enemy_position = {x: -100, y: -100};
 
+//star settings
+const star_speed = 1;
+
 //star manager object pool settings
-const star_pool_size = 100;
+const star_pool_size = 300;

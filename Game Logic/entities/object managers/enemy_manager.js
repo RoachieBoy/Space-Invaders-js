@@ -20,6 +20,9 @@ class EnemyManager {
 
     // sets all the enemies to not in use (not on the screen and not updating)
     this.enemies.forEach (enemy => (enemy.inUse = false));
+
+    // spawns the enemies in a grid like pattern on the screen
+    this.spawnEnemies (enemy_rows, enemy_columns);
   }
 
   /**
@@ -52,6 +55,7 @@ class EnemyManager {
  *  Updates the enemies in the enemies in use array 
  */
   updateEnemies () {
+    this.displayEnemies ();
     this.bulletCollisions ();
 
     // iterate through the enemies in use array and move them to the right
@@ -68,6 +72,13 @@ class EnemyManager {
         enemy.shiftDown ();
       });
     }
+  }
+
+  /**
+   * Displays the enemies in the enemies in use array
+   */
+  displayEnemies () {
+    this.enemiesInUse.forEach (enemy => enemy.display ());
   }
 
   /**
