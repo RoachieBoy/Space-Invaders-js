@@ -1,7 +1,8 @@
 class EnemyManager {
-  constructor (enemyPoolSize) {
+  constructor (enemyPoolSize, bulletManager) {
     this.enemyPoolSize = enemyPoolSize;
     this.enemiesInUse = [];
+    this.bulletManager = bulletManager;
 
     // creates an array of enemies from the pool size
     this.enemies = Array.from (
@@ -77,7 +78,7 @@ class EnemyManager {
 
     // iterate through the used enemies and check if they are colliding with the bullets
     this.enemiesInUse.forEach (enemy => {
-      bulletManager.bullets.forEach (bullet => {
+      this.bulletManager.bullets.forEach (bullet => {
         if (CollisionHelper.checkRectCollision (enemy, bullet)) {
           enemy.hit = true;
           hitEnemies.push (enemy);

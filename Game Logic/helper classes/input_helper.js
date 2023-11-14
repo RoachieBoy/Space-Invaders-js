@@ -3,41 +3,64 @@
    Inspiration: https://medium.com/@joshbwasserman/managing-simultaneous-keypressed-events-in-javascript-78da1b3b14de 
 */
 class InputHelper {
+  error_message_events = 'Invalid event type received:';
+
+  // the keys that are currently pressed
   static keys = {};
+
+  // the last key event that was fired
   static lastKeyPressed = null;
 
+  // the events that are subscribed to currently
+  static events = [
+    {name: 'keydown', handler: InputHelper.keysPressed},
+    {name: 'keyup', handler: InputHelper.keysReleased},
+  ];
+
   /**
-   * Checks if a key is pressed
-   * @param {KeyboardEvent} e
-   * @returns {boolean} - Returns true if the key is pressed
+   * Checks if the key is pressed 
+   * @param {*} e - The key event  
    */
-  static keysPressed(e) {
+  static keysPressed (e) {
     if (e instanceof KeyboardEvent) {
       InputHelper.keys[e.key] = true;
       InputHelper.lastKeyPressed = e.key;
     } else {
-      console.error("Invalid event type received in keysPressed:", e);
+      console.error (error_message_events, e);
     }
   }
 
   /**
-   * Checks if a key is released
-   * @param {KeyboardEvent} e
-   * @returns {boolean} - Returns true if the key is released
+   * Checks if the key is released
+   * @param {*} e  - The key event
    */
-  static keysReleased(e) {
+  static keysReleased (e) {
     if (e instanceof KeyboardEvent) {
       InputHelper.keys[e.key] = false;
     } else {
-      console.error("Invalid event type received in keysReleased:", e);
+      console.error (error_message_events, e);
     }
   }
 
   /**
-   *  Subscribes to the keydown and keyup events
+   *  Subscribes to the key events using the event subscriptions array.
+   * 
+   * Useful for ensuring that the events are subscribed to when they are needed.
    */
-  static eventSubscriptions() {
-    document.addEventListener("keydown", InputHelper.keysPressed);
-    document.addEventListener("keyup", InputHelper.keysReleased);
+  static eventSubscriptions () {
+    InputHelper.events.forEach (event => {
+      document.addEventListener (event.name, event.handler);
+    });
+  }
+
+  /**
+   * Unsubscribes from the key events using the event subscriptions array.
+   * 
+   * Useful for ensuring that the events are not subscribed to when they are not needed
+   */
+  static unsubscribeAll () {
+    InputHelper.events.forEach (event => {
+      document.removeEventListener (event.name, event.handler);
+    });
   }
 }
