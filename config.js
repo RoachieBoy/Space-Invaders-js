@@ -1,4 +1,5 @@
-// main game settings
+//---------------------------------- General ----------------------------------
+
 const canvas_size = {width: 800, height: 600};
 const game_states = {
   start: 'start',
@@ -6,6 +7,7 @@ const game_states = {
 };
 
 //---------------------------------- Starting State ----------------------------------
+
 const start_text = 'Press Enter to start';
 const start_text_size = 32;
 const start_text_color = 'white';
@@ -14,15 +16,15 @@ const start_text_width_correction = 150;
 
 // ---------------------------------- Playing State ----------------------------------
 
-// state settings
+// general state settings
 const bg_color = 0;
 
 // player settings
-const player_speed = 15;
+const player_speed = 12;
 const player_width = 75;
 const player_height = 15;
 const player_color = 'red';
-const player_bullet_cooldown = 200;
+const player_bullet_cooldown = 500;
 const player_acceleration = 0.5;
 const player_deceleration = 0.5;
 
@@ -40,7 +42,7 @@ const bullet_starting_position = {x: -100, y: -100};
 const enemy_width = 25;
 const enemy_height = 25;
 const enemy_color = 'green';
-const enemy_speed = 0.5;
+const enemy_speed = 0.25;
 const enemy_points = 10;
 const enemy_starting_position = {x: -100, y: -100};
 
@@ -51,3 +53,6 @@ const enemies_x_spacing_correction = 200;
 const enemy_rows = 5;
 const enemy_columns = 11;
 const remove_enemy_position = {x: -100, y: -100};
+
+//star manager object pool settings
+const star_pool_size = 100;

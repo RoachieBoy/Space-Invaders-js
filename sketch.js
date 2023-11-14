@@ -1,5 +1,5 @@
-let screen;    
-let gameStateManager;
+var screen;    
+var gameStateManager;
 
 function setup () {
   createCanvas (canvas_size.width, canvas_size.height);

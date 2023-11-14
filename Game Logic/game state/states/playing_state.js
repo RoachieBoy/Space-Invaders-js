@@ -8,6 +8,7 @@ class PlayingState extends GameState {
     // bullet manager needs to be initialized before the enemy manager and player
     this.bulletManager = new BulletManager (bullet_pool_size);
     this.enemyManager = new EnemyManager (enemy_pool_size, this.bulletManager);
+    this.starManager = new StarManager (star_pool_size);
 
     this.player = new Player (
       width / 2 - player_width / 2,
@@ -23,12 +24,17 @@ class PlayingState extends GameState {
     InputHelper.eventSubscriptions ();
 
     this.enemyManager.spawnEnemies ();
+    this.starManager.spawnStars ();
   }
 
   update () {
     background (bg_color);
 
     InputHelper.eventSubscriptions ();
+
+        // update and display the stars
+    this.starManager.stars.forEach (star => star.display ());
+    this.starManager.updateStars ();
 
     // update and display the bullets
     this.bulletManager.bullets.forEach (bullet => bullet.display ());
@@ -46,8 +52,9 @@ class PlayingState extends GameState {
   }
 
   exit () {
-    this.bulletManager.bullets = [];
-    this.enemyManager.enemies = [];
+    this.bulletManager = null;
+    this.enemyManager = null;
+    this.starManager = null;
     this.player = null;
 
     InputHelper.unsubscribeAll ();
