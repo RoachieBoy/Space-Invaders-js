@@ -15,7 +15,7 @@ function setup () {
 
   gameStateManager = new GameStateManager ();
   registerStates ();
-  gameStateManager.setState ('playing');
+  gameStateManager.setState ('start');
 }
 
 function draw () {
@@ -23,5 +23,6 @@ function draw () {
 }
 
 function registerStates () {
+  gameStateManager.registerState ('start', new StartGameState ());
   gameStateManager.registerState ('playing', new PlayingState (screen));
 }
