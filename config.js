@@ -1,5 +1,20 @@
 // main game settings
 const canvas_size = {width: 800, height: 600};
+const game_states = {
+  start: 'start',
+  playing: 'playing',
+};
+
+//---------------------------------- Starting State ----------------------------------
+const start_text = 'Press Enter to start';
+const start_text_size = 32;
+const start_text_color = 'white';
+const start_text_width_correction = 150;
+
+
+// ---------------------------------- Playing State ----------------------------------
+
+// state settings
 const bg_color = 0;
 
 // player settings

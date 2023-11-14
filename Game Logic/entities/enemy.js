@@ -1,10 +1,9 @@
 class Enemy extends GameObject {
   constructor (x, y, width, height, color, points) {
     super (x, y, width, height, color);
-    this.speed = enemy_speed; 
+    this.speed = enemy_speed;
     this.direction = 1;
     this.alive = true;
-    this.points = points;
     this.hit = false;
   }
 
@@ -29,11 +28,10 @@ class Enemy extends GameObject {
   /**
      *  Updates the enemy's position
      */
-    kill(){
+  kill () {
+    if (!this.hit) return;
 
-      if (!this.hit) return;
-
-      this.x = remove_enemy_position.x;
-      this.y = remove_enemy_position.y;
-    }
+    this.x = remove_enemy_position.x;
+    this.y = remove_enemy_position.y;
+  }
 }

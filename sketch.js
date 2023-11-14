@@ -1,11 +1,10 @@
 let screen;    
-let point_values_enemies = [10, 20, 30];
 let gameStateManager;
 
 function setup () {
   createCanvas (canvas_size.width, canvas_size.height);
 
-  // this needs to stay here!
+  // this is defined here because the screen size is not known before setup
   screen = {
     x: 0,
     y: 0,
@@ -13,16 +12,20 @@ function setup () {
     height: height,
   };
 
+  // create the game state manager and set the initial state to start
   gameStateManager = new GameStateManager ();
   registerStates ();
-  gameStateManager.setState ('start');
+  gameStateManager.setState (game_states.start);
 }
 
 function draw () {
   gameStateManager.update ();
 }
 
+/**
+ * Register all game states with the game state manager
+ */
 function registerStates () {
-  gameStateManager.registerState ('start', new StartGameState ());
-  gameStateManager.registerState ('playing', new PlayingState (screen));
+  gameStateManager.registerState (game_states.start, new StartGameState ());
+  gameStateManager.registerState (game_states.playing, new PlayingState (screen));
 }

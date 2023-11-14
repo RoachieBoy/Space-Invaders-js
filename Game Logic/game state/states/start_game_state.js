@@ -1,22 +1,21 @@
-class StartGameState extends GameState{
+class StartGameState extends GameState {
+  enter () {
+    InputHelper.eventSubscriptions ();
+  }
 
-    enter () {
-        InputHelper.eventSubscriptions ();
-    }
-    
-    update () {
-        background (bg_color);
-        fill(255);
-        textSize(32);
-        text("Press Enter to start", width/2, height/2);
+  update () {
+    background (bg_color);
+    fill (start_text_color);
+    textSize (start_text_size);
+    text (start_text, width / 2 - start_text_width_correction, height / 2);
 
-        // register event lisener for the enter key
-        if(InputHelper.keys["Enter"]){
-            gameStateManager.setState('playing');
-        }
+    // register event lisener for the enter key
+    if (InputHelper.keys['Enter']) {
+      gameStateManager.setState (game_states.playing);
     }
+  }
 
-    exit () {
-        InputHelper.unsubscribeAll ();
-    }
+  exit () {
+    InputHelper.unsubscribeAll ();
+  }
 }
