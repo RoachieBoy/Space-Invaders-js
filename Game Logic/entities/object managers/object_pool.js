@@ -3,8 +3,10 @@ class ObjectPool {
     this.poolSize = poolSize;
     this.objectsInUse = [];
 
+    // creates a new array of objects with the specified size
     this.objects = Array.from (
       {length: this.poolSize},
+      // this is a function that returns a new object with given arguments
       () => new ObjectClass (...objectArgs)
     );
 
