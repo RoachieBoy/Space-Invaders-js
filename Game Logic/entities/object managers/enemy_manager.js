@@ -61,31 +61,23 @@ class EnemyManager extends ObjectPool {
   /**
      * Checks for collisions between bullets and enemies
      */
-  bulletCollisions() {
+  bulletCollisions () {
     let hitEnemies = [];
 
     // iterate through all the enemies and bullets and check for collisions
-    this.objectsInUse.forEach((enemy) => {
-      this.bulletManager.objectsInUse.forEach((bullet) => {
-        if (CollisionHelper.checkRectCollision(enemy, bullet)) {
+    this.objectsInUse.forEach (enemy => {
+      this.bulletManager.objectsInUse.forEach (bullet => {
+        if (CollisionHelper.checkRectCollision (enemy, bullet)) {
           enemy.hit = true;
-          hitEnemies.push(enemy);
-          bullet.inUse = false;
-          const index = this.bulletManager.objectsInUse.indexOf(bullet);
-          if (index > -1) {
-            this.bulletManager.objectsInUse.splice(index, 1);
-          }
+          hitEnemies.push (enemy);
+          this.bulletManager.removeObjectAtIndex (bullet);
         }
       });
     });
 
-    hitEnemies.forEach((enemy) => {
-      enemy.inUse = false;
-      enemy.kill();
-      const index = this.objectsInUse.indexOf(enemy);
-      if (index > -1) {
-        this.objectsInUse.splice(index, 1);
-      }
+    hitEnemies.forEach (enemy => {
+      enemy.kill ();
+      this.removeObjectAtIndex (enemy);
     });
   }
 }
