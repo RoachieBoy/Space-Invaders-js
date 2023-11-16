@@ -70,22 +70,14 @@ class EnemyManager extends ObjectPool {
         if (CollisionHelper.checkRectCollision(enemy, bullet)) {
           enemy.hit = true;
           hitEnemies.push(enemy);
-          bullet.inUse = false;
-          const index = this.bulletManager.objectsInUse.indexOf(bullet);
-          if (index > -1) {
-            this.bulletManager.objectsInUse.splice(index, 1);
-          }
+          this.bulletManager.removeObjectAtIndex(this.bulletManager.objectsInUse.indexOf(bullet));
         }
       });
     });
 
     hitEnemies.forEach((enemy) => {
-      enemy.inUse = false;
       enemy.kill();
-      const index = this.objectsInUse.indexOf(enemy);
-      if (index > -1) {
-        this.objectsInUse.splice(index, 1);
-      }
+      this.removeObjectAtIndex(this.objectsInUse.indexOf(enemy));
     });
   }
 }
