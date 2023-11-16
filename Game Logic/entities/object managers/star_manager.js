@@ -1,52 +1,32 @@
-class StarManager {
+class StarManager extends ObjectPool {
   constructor (poolSize) {
-    this.poolSize = poolSize;
-    this.stars = [];
-
+    super (poolSize, Star, [0, 0, 1, 1, 'white']);
     this.spawnStars ();
   }
 
   /**
-   * Spawns stars from the pool in random positions on the screen
+   * Spawns the stars in the pool
    */
   spawnStars () {
-    for (let i = 0; i < this.poolSize; i++) {
-      let size = Math.random () * 1.5;
-      this.stars.push (
-        new Star (
-          Math.random () * canvas_size.width,
-          Math.random () * canvas_size.height,
-          size,
-          size,
-          'white'
-        )
-      );
-    }
+    this.objects.forEach (star => {
+      star.x = Math.random () * canvas_size.width;
+      star.y = Math.random () * canvas_size.height;
+      star.inUse = true;
+      this.objectsInUse.push (star);
+    });
   }
 
-  /**
-   * Updates the stars in the stars in use array
-   */
-  updateStars () {
-    this.displayStars ();
-
-    this.stars.forEach (star => star.update ());
+  updateObjects () {
+    super.updateObjects ();
 
     this.resetStarPosition ();
   }
 
   /**
-   * Displays the stars in the stars in use array
-   */
-  displayStars () {
-    this.stars.forEach (star => star.display ());
-  }
-
-  /**
-   * Resets the star position if it goes out of bounds
+   * Resets the star position if it is out of bounds
    */
   resetStarPosition () {
-    this.stars.forEach (star => {
+    this.objectsInUse.forEach (star => {
       if (star.y < 0) {
         star.x = Math.random () * canvas_size.width;
         star.y = canvas_size.height + star.height;

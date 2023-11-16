@@ -27,7 +27,7 @@ class PlayingState extends GameState {
   update () {
     background (bg_color);
 
-    this.starManager.updateStars ();
+    this.starManager.updateObjects ();
     this.bulletManager.updateObjects ();
     this.enemyManager.updateObjects ();
 
