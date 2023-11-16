@@ -11,27 +11,21 @@ class ObjectPool {
     this.objects.forEach (object => (object.inUse = false));
   }
 
+  /**
+   * Updates the objects in the pool
+   */
   updateObjects () {
     this.displayObjects ();
 
-    for (let i = this.objectsInUse.length - 1; i >= 0; i--) {
-      const object = this.objectsInUse[i];
-
-      if (this.isOutOfBounds (object)) {
-        this.objectsInUse.splice (i, 1);
-        object.inUse = false;
-      } else {
-        object.update ();
-      }
-    }
+    this.objectsInUse.forEach (object => {
+      object.update ();
+    });
   }
 
+  /**
+   * Displays the in use objects in the pool
+   */
   displayObjects () {
     this.objectsInUse.forEach (object => object.display ());
-  }
-
-  isOutOfBounds (object) {
-    // Override this in subclasses to provide specific out of bounds logic
-    return false;
   }
 }
