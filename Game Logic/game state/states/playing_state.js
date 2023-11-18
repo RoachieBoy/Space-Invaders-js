@@ -28,9 +28,9 @@ class PlayingState extends GameState {
     background (bg_color);
 
     // update all instances of object pools in this state
+    this.starManager.updateObjects ();
     this.bulletManager.updateObjects ();
     this.enemyManager.updateObjects ();
-    this.starManager.updateObjects ();
 
     // update the player
     this.player.update ();

@@ -1,6 +1,13 @@
 var screen;    
 var gameStateManager;
 
+function preload () {
+  // load all fonts
+  space_invaders_font =  loadFont (font_asset_path + 'space_invaders.ttf');
+  machine_font_medium = loadFont (font_asset_path + 'MachineStd-Medium.otf');
+  machine_font_bold =  loadFont (font_asset_path + 'MachineStd-Bold.otf');
+}
+
 function setup () {
   createCanvas (canvas_size.width, canvas_size.height);
 

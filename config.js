@@ -8,11 +8,15 @@ const game_states = {
 
 //---------------------------------- Starting State ----------------------------------
 
-const start_text = 'Press Enter to start';
-const start_text_size = 32;
+const start_text = 'Space Invaders';
+const start_text_size = 120; 
 const start_text_color = 'white';
-const start_text_width_correction = 150;
+const start_text_width_correction = { x : 360, y: 350};
 
+const press_enter_text = 'Press Enter to Start';
+const press_enter_text_size = 25;
+const press_enter_text_color = 'white';
+const press_enter_text_width_correction = { x : 200, y: 200};
 
 // ---------------------------------- Playing State ----------------------------------
 
@@ -34,7 +38,7 @@ const bullet_height = 20;
 const bullet_color = 'white';
 const bullet_speed = 10;
 
-// bullet manager objet pool    settings
+// bullet manager objet pool settings
 const bullet_pool_size = 100;
 const bullet_starting_position = {x: -100, y: -100};
 
@@ -59,3 +63,9 @@ const star_speed = 1;
 
 //star manager object pool settings
 const star_pool_size = 300;
+
+// ---------------------------------- Assets Settings ----------------------------------
+const font_asset_path = "Assets/Font Assets/";
+let space_invaders_font;
+let machine_font_bold;
+let machine_font_medium;
